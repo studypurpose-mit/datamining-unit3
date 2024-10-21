@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Mining - Association Rules (Detailed)</title>
+    <title>Data Mining - Comprehensive Topics</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,61 +38,120 @@
         .disclaimer {
             font-style: italic;
         }
+        .diagram {
+            text-align: center;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Data Mining - Association Rules</h1>
+        <h1>Data Mining - Comprehensive Topics</h1>
 
-        <h2>1. Association Rule Mining (5 Marks)</h2>
-        <p>Association rule mining ek technique hai jo large datasets mein frequent patterns, relationships ya associations ko dhoondhne ke liye use hoti hai. Iska use zyada tar <strong>Market Basket Analysis</strong> mein hota hai, jahan hum customer ke purchasing behavior ko samajhne ki koshish karte hain. Is process se hume pata chalta hai ki kaunse products aksar saath mein kharide jaate hain.</p>
-        <p>Example: Agar koi customer bread khareedta hai, toh uske butter khareedne ke chances badh jaate hain. Yahi ek association rule banata hai. Is rule ko banate waqt 2 cheezein important hoti hain:</p>
+        <h2>1. Generate Association Rules (5 Marks)</h2>
+        <p>Association rules un relationships ko define karte hain jo items ke beech mein hote hain. Ye rules batate hain ki kisi item ko kharidne par kaunse doosre items kharidne ki sambhavna zyada hoti hai. Ye zyada tar <strong>Market Basket Analysis</strong> mein use hote hain, jahan customer ke purchasing behavior ko samjha jaata hai.</p>
+        <p><strong>Example:</strong> Agar koi customer bread kharidta hai, toh uske butter kharidne ke chances 70% hain. Yahan, bread aur butter ke beech association rule ban jaata hai: <em>{bread} => {butter}</em>.</p>
+        <p>Is rule ko samajhne ke liye 2 cheezein important hain:</p>
         <ul>
-            <li><strong>Support:</strong> Kitni baar ek itemset dataset mein appear hota hai.</li>
-            <li><strong>Confidence:</strong> Probability that agar X item khareeda gaya, toh Y bhi khareeda jaayega.</li>
+            <li><strong>Support:</strong> Ye batata hai ki ek itemset dataset mein kitni baar appear hota hai. Agar 100 transactions mein se 30 mein {bread, butter} aaye, toh support 30% hoga.</li>
+            <li><strong>Confidence:</strong> Ye batata hai ki agar item A kharida gaya, toh item B kharidne ki sambhavna kitni hai. Agar 50 transactions mein se 30 mein bread kharid gaya aur 21 mein butter kharida gaya, toh confidence 21/30 = 70% hoga.</li>
         </ul>
-        <p>Agar support aur confidence dono minimum threshold ko meet karte hain, toh hum us rule ko interesting rule maante hain.</p>
+        <div class="diagram"><img src="https://www.researchgate.net/publication/334370213/figure/fig4/AS:779121890185221@1562768542667/Steps-of-association-rule-mining-technique-apriori-algorithm.ppm" alt="Diagram Description" style="max-width: 100%; height: auto;"></div>
 
-        <h2>2. Frequent Itemsets (5 Marks)</h2>
-        <p>Frequent itemsets wo groups of items hote hain jo transactions mein aksar saath mein appear hote hain. Frequent itemsets ka use association rules banane ke liye hota hai.</p>
+        <h2>2. Transaction Reduction (5 Marks)</h2>
+        <p>Transaction reduction ka matlab hai dataset ko size mein kam karna taaki analysis asaan ho sake. Yeh process irrelevant ya redundant transactions ko remove karta hai, jo memory aur processing time ko reduce karta hai. Isse data ki quality bhi improve hoti hai.</p>
+        <p><strong>Example:</strong> Agar kisi supermarket mein kuch items aksar saath kharide jaate hain, toh un transactions ko combine kiya ja sakta hai. Jaise, agar {milk, bread}, {milk, butter}, aur {bread, butter} transactions hain, toh inhe {milk, bread, butter} ke saath represent kiya ja sakta hai.</p>
+        <p>Iska ek aur example hai, jab ek customer ko 'A' aur 'B' dono items kharidne ka option diya jaata hai, lekin actual mein usne sirf 'A' kharida. Toh 'B' ko transaction se remove kiya ja sakta hai, jisse dataset clean hota hai.</p>
+        <div class="diagram"></div>
+
+        <h2>3. Correlation Analysis (5 Marks)</h2>
+        <p>Correlation analysis do ya zyada variables ke beech ke sambandh ko samajhne ke liye hota hai. Yeh batata hai ki agar ek variable mein badhotri hoti hai, toh doosre variable par kya asar padta hai. Isse hume relationship ko samajhne mein madad milti hai, jaise ki positive ya negative correlation.</p>
+        <p><strong>Example:</strong> Agar temperature badhta hai, toh ice cream ki sales badhti hain. Is case mein, temperature aur ice cream sales ke beech positive correlation hai. Agar temperature 30°C se 40°C tak badhta hai, toh sales 100% se 200% tak badh sakti hain. </p>
+        <p>Correlation ka measurement Pearson's correlation coefficient (r) se hota hai, jiska range -1 se +1 tak hota hai. +1 ka matlab hai perfect positive correlation, -1 ka matlab hai perfect negative correlation, aur 0 ka matlab hai no correlation.</p>
+        <div class="diagram"><div class="diagram"><img src="https://media.geeksforgeeks.org/wp-content/uploads/Correl.png" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <h2>4. Construct FP Tree from Dataset (5 Marks)</h2>
+        <p>FP-Tree (Frequent Pattern Tree) ek compact tree structure hai jo frequent itemsets ko store karta hai. Ye tree structure items ke occurrence ko efficiently represent karta hai, jisse baar-baar database ko scan karne ki zaroorat nahi padti. Ye FP-Growth algorithm mein use hota hai, jo association rules ko efficiently generate karta hai.</p>
+        <p><strong>Example:</strong> Ek dataset mein transactions hain: {A, B}, {A, C}, {B, C}, {A, B, C}. Isse pehle frequent 1-itemsets (A, B, C) ko identify kiya jaata hai, fir unhe descending order mein sort kiya jaata hai. Fir ek FP-Tree banaya jaata hai jismein transactions ke items ko nodes ke form mein store kiya jaata hai.</p>
+        <p>FP-Tree ka structure aise hota hai ki har node us item ka count dikhati hai, aur nodes ke beech edges connection dikhate hain. Isse hum quickly patterns ko identify kar sakte hain.</p>
+        <div class="diagram"></div>
+
+        <h2>5. Confidence and Support Examples (5 Marks)</h2>
+        <p><strong>Support:</strong> Kisi itemset ka support ye batata hai ki wo itemset dataset mein kitni baar appear hota hai. Agar dataset mein total 100 transactions hain aur {A, B} itemset 20 baar appear hota hai, toh support 20% hoga.</p>
+        <p><strong>Confidence:</strong> Kisi rule ka confidence ye batata hai ki agar item A kharida gaya, toh item B kharidne ki sambhavna kitni hai. Agar {A} ke saath {B} ka support 15 baar hai aur total {A} ka support 50 baar hai, toh confidence 15/50 = 30% hoga.</p>
+        <p>Yeh metrics hume rules ki effectiveness samajhne mein madad karte hain, jisse hum unhe classify aur rank kar sakte hain.</p>
+        <div class="diagram"><div class="diagram"><img src="https://awaremh.com/wp-content/uploads/2019/02/Screenshot-2019-02-07-at-9.41.46-PM.png" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <h2>6. Apriori Algorithm with Example Given (5 Marks)</h2>
+        <p>Apriori algorithm ek classic approach hai frequent itemsets ko discover karne ke liye. Ye algorithm ek assumption par based hai ki agar ek itemset frequent hai, toh uske subsets bhi frequent honge. Ye database ko baar-baar scan karne ke bajaye, itemsets ko level-wise analyze karta hai.</p>
+        <p><strong>Example:</strong> Agar hamare paas transactions hain: {A, B}, {A, C}, {B, C}, toh pehle hum single items ki support count karte hain (A, B, C). Phir pairs ki frequency count karte hain, jaise {A, B}, {A, C} etc. Agar kisi bhi itemset ka support minimum threshold se zyada hai, toh wo frequent itemset mana jaata hai.</p>
+        <p>Yeh algorithm is process ko tab tak repeat karta hai jab tak koi naya frequent itemset na mile.</p>
+        <div class="diagram"><div class="diagram"><img src="https://www.analytixlabs.co.in/blog/wp-content/uploads/2024/01/2-6.jpg" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <h2>7. Frequent Pattern Set (5 Marks)</h2>
+        <p>Frequent pattern set un items ka collection hai jo transactions mein frequently appear hote hain. Ye patterns data mining ke liye important hain kyunki ye insights provide karte hain, jaise customer behavior ko samajhna ya market trends ko identify karna.</p>
+        <p><strong>Example:</strong> Agar ek supermarket mein customers aksar {milk, bread} kharidte hain, toh yeh ek frequent pattern set hai. Frequent pattern sets ka use kar ke hum association rules generate kar sakte hain, jo business strategies mein madadgar hote hain.</p>
+        <p>In patterns ko identify karne ke liye algorithms jaise Apriori aur FP-Growth use hote hain.</p>
+        <div class="diagram"><div class="diagram"><img src="https://media.geeksforgeeks.org/wp-content/uploads/20220824123655/pattern.jpg" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <h2>8. Bayes Theorem and Naive Bayesian Classification with Example (5 Marks)</h2>
+        <p>Bayes Theorem ek mathematical formula hai jo probability ko calculate karne ke liye use hota hai. Ye theorem ek event ki probability ko dusre event ke occurrence ke basis par update karta hai. Ye classification problems mein bahut useful hota hai, jahan hum labels ko predict karte hain.</p>
+        <p><strong>Example:</strong> Agar hume pata hai ki 30% emails spam hain, aur agar ek email 'free' shabd contain karta hai, toh hume is email ke spam hone ki probability nikaalni hoti hai. Isme Bayes Theorem ka use hota hai, jisme hum prior probability aur conditional probability ko combine karte hain.</p>
+        <p>Naive Bayesian classification is theorem ka extension hai jahan hum assume karte hain ki features independent hain. Ye bahut simple aur effective algorithm hai jo text classification, email filtering, etc. mein use hota hai.</p>
+        <div class="diagram"><!-- Diagram: Example of Bayes Theorem --></div>
+
+        <h2>9. Accuracy, Precision, Recall, and F1 Score (5 Marks)</h2>
+        <p>Ye metrics classification models ki performance ko evaluate karte hain:</p>
         <ul>
-            <li><strong>Support:</strong> Support batata hai ki ek item ya itemset dataset mein kitni baar aa raha hai. Example: Agar ek itemset 1000 transactions mein se 200 baar appear hota hai, toh uska support 20% hoga.</li>
-            <li><strong>Confidence:</strong> Confidence batata hai ki agar ek itemset khareeda gaya hai, toh doosra item khareedne ke kitne chances hain.</li>
+            <li><strong>Accuracy:</strong> Ye total predictions ka percentage hota hai jo sahi hote hain. Formula: (TP + TN) / (TP + TN + FP + FN).</li>
+            <li><strong>Precision:</strong> Ye positive predictions mein se kitne predictions sahi hain, ye measure karta hai. Formula: TP / (TP + FP).</li>
+            <li><strong>Recall:</strong> Ye actual positive cases mein se kitne correctly predict kiye gaye hain, ye measure karta hai. Formula: TP / (TP + FN).</li>
+            <li><strong>F1 Score:</strong> Ye precision aur recall ka harmonic mean hai, jo unke beech ka balance batata hai. Formula: 2 * (Precision * Recall) / (Precision + Recall).</li>
         </ul>
+        <p>Ye metrics hume help karte hain model ki effectiveness ko samajhne mein aur model selection mein bhi madadgar hote hain.</p>
+        <div class="diagram"><!-- Diagram: Example of Performance Metrics --></div>
 
-        <h2>3. Apriori Algorithm (5 Marks)</h2>
-        <p>Apriori algorithm ek classic algorithm hai jo frequent itemsets ko discover karne ke liye use hota hai. Ye algorithm ek assumption par based hota hai ki "agar ek itemset frequent hai, toh uske subsets bhi frequent honge".</p>
-        <p><strong>Steps:</strong></p>
-        <ul>
-            <li>Step 1: Database ko scan karo aur sabse pehle frequent 1-itemsets ko dhoondo jo minimum support ko meet karte hain.</li>
-            <li>Step 2: Fir us 1-itemsets ko use karke 2-itemsets generate karo jo frequent ho.</li>
-            <li>Step 3: Isi tarah 3-itemsets, 4-itemsets generate hote rahenge jab tak koi frequent itemset na mile.</li>
-        </ul>
-        <p>Har level pe hum un itemsets ko prune kar dete hain jo minimum support ko meet nahi karte. Is process ko tab tak repeat kiya jaata hai jab tak frequent itemsets milte rahein.</p>
+        <h2>10. Information Gain with Example (5 Marks)</h2>
+        <p>Information Gain ek measure hai jo decision tree algorithms mein use hota hai. Ye kisi feature ki useful information ko quantify karta hai jab wo data ko classify karne ke liye use hota hai. Ye batata hai ki feature ka data par kitna impact hai.</p>
+        <p><strong>Example:</strong> Agar hamare paas ek dataset hai jisme 'Weather' feature hai, toh information gain ye batata hai ki 'Weather' feature se kitna information gain hota hai jab hum target variable ko predict karte hain, jaise 'Play'. Agar 'Sunny' weather ke liye 'Play' ka ratio 70% hai aur 'Rainy' ke liye 30% hai, toh information gain high hoga, kyunki weather information ka use karne se target variable ko predict karne mein madad mil rahi hai.</p>
+        <div class="diagram"><!-- Diagram: Example of Information Gain --></div>
 
-        <h2>4. FP-Growth Algorithm (5 Marks)</h2>
-        <p>FP-Growth algorithm Apriori se zyada efficient hai kyunki yeh database ko baar-baar scan nahi karta. Isme frequent pattern tree (FP-Tree) ka use karke itemsets ko compress kiya jaata hai. Isse searching fast hoti hai.</p>
-        <ul>
-            <li><strong>Step 1:</strong> Sabse pehle frequent 1-itemsets ko find karo jo minimum support ko meet karte hain. In items ko descending order mein sort kar do.</li>
-            <li><strong>Step 2:</strong> FP-Tree banaya jaata hai jisme transactions ke items ko nodes ki form mein store kiya jaata hai.</li>
-            <li><strong>Step 3:</strong> Conditional databases banaye jaate hain, jahan har frequent item ka alag subtree banta hai aur pattern mining hoti hai.</li>
-        </ul>
+        <h2>11. Classification and Prediction Difference (5 Marks)</h2>
+        <p>Classification aur prediction do important concepts hain machine learning mein. Classification ka matlab hai data ko specific classes ya labels mein categorize karna. Ye supervised learning ka part hai.</p>
+        <p><strong>Example:</strong> Email ko 'Spam' ya 'Not Spam' mein classify karna.</p>
+        <p>Prediction ka matlab hai future outcomes ko estimate karna based on past data. Ye regression tasks mein zyada common hai.</p>
+        <p><strong>Example:</strong> Sales ko predict karna based on previous trends.</p>
+        <div class="diagram"><!-- Diagram: Example of Classification vs Prediction --></div>
 
-        <h2>5. Correlation Analysis (5 Marks)</h2>
-        <p>Correlation analysis ek statistical technique hai jisme hum do ya zyada variables ke beech ke relationship ko check karte hain. Iska use association rule ke baad correlation ko measure karne ke liye kiya jaata hai.</p>
-        <ul>
-            <li><strong>Lift:</strong> Ye ek measure hai jo batata hai ki agar do items saath mein khareede jaate hain, toh unka independent hone se zyada relationship kitna strong hai. Agar <strong>Lift > 1</strong> hai, toh positive correlation hai, yaani items aksar saath khareede jaate hain.</li>
-            <li>Agar <strong>Lift < 1</strong> hai, toh negative correlation hai, yaani items rare saath mein khareede jaate hain.</li>
-        </ul>
+        <h2>12. SVM (Support Vector Machine) (5 Marks)</h2>
+        <p>SVM ek supervised learning algorithm hai jo classification aur regression problems ke liye use hota hai. Ye high-dimensional space mein data points ko separate karne ke liye hyperplanes create karta hai. Iska main objective hai margin ko maximize karna taaki model ki accuracy badh sake.</p>
+        <p><strong>Example:</strong> Agar hamare paas 2 classes hain (A aur B), toh SVM ye hyperplane identify karta hai jo dono classes ko separate karta hai aur margin ko maximize karta hai, jisse data points ko sahi tarike se classify kiya ja sake.</p>
+        <div class="diagram"><!-- Diagram: Example of SVM Hyperplane --></div>
 
-        <h2>6. Mining Multidimensional Associations (5 Marks)</h2>
-        <p>Multidimensional associations wo rules hote hain jo multiple dimensions (jaise age, income, aur product purchases) ko include karte hain. Ye transactional data ke alawa relational data ko bhi include karte hain.</p>
-        <p>Example: Log jo 20-30 years ke hain aur unki high income hai, wo laptops zyada khareedte hain. Isse hume marketing aur product placement strategies banane mein madad milti hai.</p>
+        <h2>13. Model Selection Issues (5 Marks)</h2>
+        <p>Model selection ek crucial step hai machine learning pipeline mein. Ye decision lene ka process hai ki kaunsa model best perform karega given dataset par. Kuch common issues hain overfitting, underfitting, aur bias-variance tradeoff.</p>
+        <p><strong>Example:</strong> Agar hamne complex model choose kiya, toh wo training data par achha perform karega lekin test data par poor performance dikhayega (overfitting). Isliye, cross-validation techniques use karke models ko select karna zaroori hai.</p>
+        <div class="diagram"><div class="diagram"><img src="https://dotnettrickscloud.blob.core.windows.net/img/machinelearning/3720230601010440.webp" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <h2>14. Naive Example (5 Marks)</h2>
+        <p>Naive example ka matlab hai ki kisi bhi feature ko independent samjha jaata hai jab classification ki ja rahi ho. Ye assumption Naive Bayes classifier mein use hoti hai. Iska fayda ye hai ki ye simple hai aur large datasets ke liye bhi efficient hai.</p>
+        <p><strong>Example:</strong> Agar hume email ko classify karna hai aur hume pata hai ki 'free' aur 'win' shabd independent hain, toh ye assumption sahi hota hai. Lekin kabhi-kabhi ye assumption galat bhi ho sakta hai, jaise 'free' aur 'win' aksar saath mein aate hain.</p>
+        <div class="diagram"><div class="diagram"><img src="https://sebastianraschka.com/images/blog/2014/naive_bayes_1/learning_algorithm_1.png" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <h2>15. Classifier Performance (5 Marks)</h2>
+        <p>Classifier performance ko measure karne ke liye accuracy, precision, recall, aur F1 score jaise metrics use kiye jaate hain. Ye metrics hume batate hain ki classifier kitna effectively kaam kar raha hai.</p>
+        <p><strong>Example:</strong> Agar kisi email classification model ne 100 emails ko classify kiya, aur 90 sahi classify kiye, toh accuracy 90% hogi. Lekin agar 80 emails spam hain aur model ne sirf 60 ko sahi classify kiya, toh precision aur recall ke values alag ho sakte hain, jisse F1 score ka use kiya ja sakta hai taaki balance dikhaya ja sake.</p>
+        <div class="diagram"><div class="diagram"><img src="https://www.techguruspeaks.com/wp-content/uploads/2020/05/classifier.png" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <h2>16. KNN (K-Nearest Neighbors) (5 Marks)</h2>
+        <p>KNN ek simple yet powerful algorithm hai jo classification tasks mein use hota hai. Ye new data points ko unke nearest neighbors ke basis par classify karta hai. KNN ka core idea hai ki similar items aksar similar categories mein fall karte hain.</p>
+        <p><strong>Example:</strong> Agar hamare paas 3 classes hain: Red, Blue, aur Green. Agar new point (2,3) ko classify karna hai, toh ye dekhta hai ki is point ke nearest neighbors kaunse hain. Agar 3 nearest neighbors mein 2 Red hain aur 1 Blue, toh (2,3) ko Red classify kiya jayega.</p>
+        <div class="diagram"><div class="diagram"><img src="https://images.javatpoint.com/tutorial/machine-learning/images/k-nearest-neighbor-algorithm-for-machine-learning2.png" alt="Diagram Description" style="max-width: 100%; height: auto;"></div></div>
+
+        <footer>
+            <p>Made by Abhijit and Ayush</p>
+            <p class="disclaimer">Disclaimer: Agar topic samajh nahi aaye, toh khud nahi likh sakte, samajhne ki koshish karein!</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>Made by Abhijit and Ayush</p>
-        <p class="disclaimer">Disclaimer: Agar topic samjha to khud nahi likh sakte tum bada answer?</p>
-    </footer>
 </body>
 </html>
