@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mining - Association Rules (Detailed)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            margin: 10px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .disclaimer {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Mining - Association Rules</h1>
+
+        <h2>1. Association Rule Mining (5 Marks)</h2>
+        <p>Association rule mining ek technique hai jo large datasets mein frequent patterns, relationships ya associations ko dhoondhne ke liye use hoti hai. Iska use zyada tar <strong>Market Basket Analysis</strong> mein hota hai, jahan hum customer ke purchasing behavior ko samajhne ki koshish karte hain. Is process se hume pata chalta hai ki kaunse products aksar saath mein kharide jaate hain.</p>
+        <p>Example: Agar koi customer bread khareedta hai, toh uske butter khareedne ke chances badh jaate hain. Yahi ek association rule banata hai. Is rule ko banate waqt 2 cheezein important hoti hain:</p>
+        <ul>
+            <li><strong>Support:</strong> Kitni baar ek itemset dataset mein appear hota hai.</li>
+            <li><strong>Confidence:</strong> Probability that agar X item khareeda gaya, toh Y bhi khareeda jaayega.</li>
+        </ul>
+        <p>Agar support aur confidence dono minimum threshold ko meet karte hain, toh hum us rule ko interesting rule maante hain.</p>
+
+        <h2>2. Frequent Itemsets (5 Marks)</h2>
+        <p>Frequent itemsets wo groups of items hote hain jo transactions mein aksar saath mein appear hote hain. Frequent itemsets ka use association rules banane ke liye hota hai.</p>
+        <ul>
+            <li><strong>Support:</strong> Support batata hai ki ek item ya itemset dataset mein kitni baar aa raha hai. Example: Agar ek itemset 1000 transactions mein se 200 baar appear hota hai, toh uska support 20% hoga.</li>
+            <li><strong>Confidence:</strong> Confidence batata hai ki agar ek itemset khareeda gaya hai, toh doosra item khareedne ke kitne chances hain.</li>
+        </ul>
+
+        <h2>3. Apriori Algorithm (5 Marks)</h2>
+        <p>Apriori algorithm ek classic algorithm hai jo frequent itemsets ko discover karne ke liye use hota hai. Ye algorithm ek assumption par based hota hai ki "agar ek itemset frequent hai, toh uske subsets bhi frequent honge".</p>
+        <p><strong>Steps:</strong></p>
+        <ul>
+            <li>Step 1: Database ko scan karo aur sabse pehle frequent 1-itemsets ko dhoondo jo minimum support ko meet karte hain.</li>
+            <li>Step 2: Fir us 1-itemsets ko use karke 2-itemsets generate karo jo frequent ho.</li>
+            <li>Step 3: Isi tarah 3-itemsets, 4-itemsets generate hote rahenge jab tak koi frequent itemset na mile.</li>
+        </ul>
+        <p>Har level pe hum un itemsets ko prune kar dete hain jo minimum support ko meet nahi karte. Is process ko tab tak repeat kiya jaata hai jab tak frequent itemsets milte rahein.</p>
+
+        <h2>4. FP-Growth Algorithm (5 Marks)</h2>
+        <p>FP-Growth algorithm Apriori se zyada efficient hai kyunki yeh database ko baar-baar scan nahi karta. Isme frequent pattern tree (FP-Tree) ka use karke itemsets ko compress kiya jaata hai. Isse searching fast hoti hai.</p>
+        <ul>
+            <li><strong>Step 1:</strong> Sabse pehle frequent 1-itemsets ko find karo jo minimum support ko meet karte hain. In items ko descending order mein sort kar do.</li>
+            <li><strong>Step 2:</strong> FP-Tree banaya jaata hai jisme transactions ke items ko nodes ki form mein store kiya jaata hai.</li>
+            <li><strong>Step 3:</strong> Conditional databases banaye jaate hain, jahan har frequent item ka alag subtree banta hai aur pattern mining hoti hai.</li>
+        </ul>
+
+        <h2>5. Correlation Analysis (5 Marks)</h2>
+        <p>Correlation analysis ek statistical technique hai jisme hum do ya zyada variables ke beech ke relationship ko check karte hain. Iska use association rule ke baad correlation ko measure karne ke liye kiya jaata hai.</p>
+        <ul>
+            <li><strong>Lift:</strong> Ye ek measure hai jo batata hai ki agar do items saath mein khareede jaate hain, toh unka independent hone se zyada relationship kitna strong hai. Agar <strong>Lift > 1</strong> hai, toh positive correlation hai, yaani items aksar saath khareede jaate hain.</li>
+            <li>Agar <strong>Lift < 1</strong> hai, toh negative correlation hai, yaani items rare saath mein khareede jaate hain.</li>
+        </ul>
+
+        <h2>6. Mining Multidimensional Associations (5 Marks)</h2>
+        <p>Multidimensional associations wo rules hote hain jo multiple dimensions (jaise age, income, aur product purchases) ko include karte hain. Ye transactional data ke alawa relational data ko bhi include karte hain.</p>
+        <p>Example: Log jo 20-30 years ke hain aur unki high income hai, wo laptops zyada khareedte hain. Isse hume marketing aur product placement strategies banane mein madad milti hai.</p>
+    </div>
+
+    <footer>
+        <p>Made by Abhijit and Ayush</p>
+        <p class="disclaimer">Disclaimer: Agar topic samjha to khud nahi likh sakte tum bada answer?</p>
+    </footer>
+</body>
+</html>
